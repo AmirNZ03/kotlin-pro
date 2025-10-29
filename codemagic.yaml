@@ -6,12 +6,15 @@ workflows:
     scripts:
       - name: Give permission to gradlew
         script: |
+          cd android
           chmod +x gradlew
       - name: Clean project
         script: |
+          cd android
           ./gradlew clean
       - name: Build Release APK
         script: |
+          cd android
           ./gradlew assembleRelease
     artifacts:
-      - app/build/outputs/apk/release/app-release.apk
+      - android/app/build/outputs/apk/release/app-release.apk
