@@ -1,27 +1,18 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
-
-android {
-    namespace 'com.example.hokm'
-    compileSdk 34
-
-    defaultConfig {
-        applicationId "com.example.hokm"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+// Top-level build file
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.1.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
     }
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
