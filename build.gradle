@@ -1,3 +1,27 @@
-// Top-level build file - minimal placeholder
-buildscript {}
-allprojects {}
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.example.hokm'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.hokm"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
+}
