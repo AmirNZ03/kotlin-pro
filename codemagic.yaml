@@ -4,11 +4,13 @@ workflows:
     max_build_duration: 60
     instance_type: mac_mini_m1
     scripts:
-      - name: Set up Gradle permissions
+      - name: Set permissions
+        script: chmod +x ./gradlew
+      - name: Install Android SDK 34
         script: |
-          chmod +x ./gradlew
+          yes | sdkmanager "platforms;android-34"
       - name: Build Release APK
         script: |
-          ./gradlew :app:assembleRelease --stacktrace
+          ./gradlew :app:assembleRelease --stacktrace --info
     artifacts:
       - app/build/outputs/apk/release/app-release.apk
