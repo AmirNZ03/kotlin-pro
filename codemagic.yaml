@@ -12,6 +12,6 @@ workflows:
           ./gradlew clean
       - name: Build Release APK
         script: |
-          ./gradlew :app:clean
+          ./gradlew assembleRelease
     artifacts:
       - app/build/outputs/apk/release/app-release.apk
