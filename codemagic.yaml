@@ -3,12 +3,17 @@ workflows:
     name: Build Android APK
     max_build_duration: 60
     instance_type: mac_mini_m1
+    environment:
+      vars:
+        ANDROID_SDK_ROOT: /Users/builder/programs/android-sdk-macosx
+        PATH: /Users/builder/programs/android-sdk-macosx/tools/bin:$PATH
     scripts:
-      - name: Set permissions
-        script: chmod +x ./gradlew
-      - name: Install Android SDK 34
+      - name: Set permissions for Gradle
         script: |
-          yes | sdkmanager "platforms;android-34"
+          chmod +x ./gradlew
+      - name: Install Android SDK 34 (if missing)
+        script: |
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" || true
       - name: Build Release APK
         script: |
           ./gradlew :app:assembleRelease --stacktrace --info
