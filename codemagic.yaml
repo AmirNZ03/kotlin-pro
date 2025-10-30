@@ -5,19 +5,17 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       vars:
-        ANDROID_SDK_ROOT: /Users/builder/programs/android-sdk-macosx
+        ANDROID_SDK_ROOT: /opt/android-sdk
     scripts:
       - name: Set permissions
         script: chmod +x ./gradlew
       - name: Setup Android SDK
         script: |
-          mkdir -p $ANDROID_SDK_ROOT/cmdline-tools/latest
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "build-tools;34.0.0" "platforms;android-34"
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0" || true
       - name: Clean project
         script: ./gradlew clean
       - name: Build Release APK
-        script: |
-          ./gradlew assembleRelease --stacktrace --no-daemon
+        script: ./gradlew assembleRelease --stacktrace --no-daemon
     artifacts:
       - app/build/outputs/apk/release/app-release.apk
