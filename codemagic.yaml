@@ -8,7 +8,6 @@ workflows:
       vars:
         ANDROID_SDK_ROOT: /Users/builder/programs/android-sdk-macosx
       java: 17
-      kotlin: 1.9.24
 
     scripts:
       - name: Prepare Gradle Wrapper
