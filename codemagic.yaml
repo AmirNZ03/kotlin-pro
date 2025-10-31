@@ -21,7 +21,8 @@ workflows:
           mkdir -p $ANDROID_SDK_ROOT/cmdline-tools
           cd $ANDROID_SDK_ROOT/cmdline-tools
           curl -o sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip
-          unzip sdk-tools.zip -d latest
+          unzip sdk-tools.zip
+          mv cmdline-tools latest
           yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
           yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
